@@ -5,19 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Job extends Model
+class Post extends Model
 {
-
+    /** @use HasFactory<\Database\Factories\PostFactory> */
     use HasFactory;
-    protected $table = 'job_listings';
 
     protected $fillable = [
         'title',
-        'salary'
+        'content'
     ];
 
-    public function employer()
+    public function comments()
     {
-        return $this->belongsTo(Employer::class);
+        return $this->hasMany(Comment::class);
     }
+
+
 }
